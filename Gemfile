@@ -40,5 +40,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Convert our data into a format that can be easily transferred across a network and reconstructed later
-
 gem 'active_model_serializers'
