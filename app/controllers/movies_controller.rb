@@ -1,1 +1,1 @@
-class Api::V1::MoviesController < ApplicationController
+class Api::V1::MoviesController < ApplicationControllerdi
