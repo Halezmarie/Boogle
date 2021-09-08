@@ -49,4 +49,4 @@ getout.categories << [thriller, horror]
 
 alien = Movie.create(title: "Alien", year: "1979", rating: "R", length: "1h 57m", image: "https://static.wikia.nocookie.net/horrormovies/images/a/af/Alien_poster_1979_cut.jpg/revision/latest?cb=20111114062148", description: "During its return to the earth, commercial spaceship Nostromo intercepts a distress signal from a distant planet. When a three-member team of the crew discovers a chamber containing thousands of eggs on the planet, a creature inside one of the eggs attacks an explorer. The entire crew is unaware of the impending nightmare set to descend upon them when the alien parasite planted inside its unfortunate host is birthed.", watch: "https://www.justwatch.com/us/movie/alien")
 
-getout.categories << [scifi, horror]
+alien.categories << [scifi, horror]
