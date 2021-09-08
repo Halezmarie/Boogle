@@ -41,7 +41,7 @@ candyman.categories << [supernatural, thriller, horror]
 
 quiet = Movie.create(title: "A Quiet Place", year: "2018", rating: "PG-13", length: "1h 31m", image: "https://m.media-amazon.com/images/I/A1zV1fxtMEL._SL1500_.jpg", description: "A family is forced to live in silence while hiding from creatures that hunt by sound.", watch: "https://www.justwatch.com/us/movie/a-quiet-place")
 
-quiet.categories << [supernatural, thriller, horror]
+quiet.categories << [scifi, thriller, horror]
 
 getout = Movie.create(title: "Get Out", year: "2017", rating: "R", length: "1h 44m", image: "https://upload.wikimedia.org/wikipedia/en/a/a3/Get_Out_poster.png", description: "Chris and his girlfriend Rose go upstate to visit her parents for the weekend. At first, Chris reads the family's overly accommodating behavior as nervous attempts to deal with their daughter's interracial relationship, but as the weekend progresses, a series of increasingly disturbing discoveries lead him to a truth that he never could have imagined.", watch: "https://www.justwatch.com/us/movie/get-out")
 
@@ -49,4 +49,4 @@ getout.categories << [thriller, horror]
 
 alien = Movie.create(title: "Alien", year: "1979", rating: "R", length: "1h 57m", image: "https://static.wikia.nocookie.net/horrormovies/images/a/af/Alien_poster_1979_cut.jpg/revision/latest?cb=20111114062148", description: "During its return to the earth, commercial spaceship Nostromo intercepts a distress signal from a distant planet. When a three-member team of the crew discovers a chamber containing thousands of eggs on the planet, a creature inside one of the eggs attacks an explorer. The entire crew is unaware of the impending nightmare set to descend upon them when the alien parasite planted inside its unfortunate host is birthed.", watch: "https://www.justwatch.com/us/movie/alien")
 
-getout.categories << [thriller, horror]
+getout.categories << [scifi, horror]
