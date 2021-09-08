@@ -1,15 +1,16 @@
 class Api::V1::MoviesController < ApplicationController
 
     def index 
-        # do not need instance variable because we are not rendering views 
+        # do not need instance variable because we are not rendering views
         movies = Movie.all
-        render json: MovieSerializer.new(movies)
+        organized_movies = movies.order(:title)
+        render json: MovieSerializer.new(organized_movies)
     end
 
-    # Do I need to keep a show?
+    # Do I need to keep a show? ***
     def show 
         movie = Movie.find(params[:id])
-        render json: movie.to_json(except: [:created_at, :updated_at])
+        render json: movie.to_json(except: [:created_at, :updated_at], include: {category: {only: [:name]}})
     end
 
     def create 
@@ -25,7 +26,7 @@ class Api::V1::MoviesController < ApplicationController
         movie = Movie.find_by_id(params[:id])
         movie.destroy
         render json: {message: "👻You successfully deleted #{movie.title}!"}
-        end
+    end
 
     def update 
         movie = Movie.find(params[:id])
@@ -35,9 +36,8 @@ class Api::V1::MoviesController < ApplicationController
     end
         
     private
+    
     def movie_params
-        params.require(:movie).permit(:title, :year, :rating, :length, :image, :description, :watch, :category_ids)
+        params.require(:movie).permit(:title, :year, :rating, :length, :image, :description, :watch, :category_ids [])
     end
-
-
 end

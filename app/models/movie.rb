@@ -1,3 +1,8 @@
 class Movie < ApplicationRecord
-    has_and_belongs_to_many :categories
+    belongs_to :category
+
+    # capitalize movie title
+    def movietitle
+        self.title.upcase
+    end
 end
