@@ -1,0 +1,1 @@
+// first step: make a fetch request to /movies and display items on the DOM
