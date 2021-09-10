@@ -1,6 +1,8 @@
 // first step: make a fetch request to  my baseURL and display items on the DOM 😁
+// second step: add adding description, rating, length, image, and where to watch it *** need to figure out how to get the image to show up and hyperlink for watch
 
 const movieslist = document.getElementById('movies')
+const descriptionInput = document.getElementById('item-description')
 
 
 fetch('http://localhost:3000/api/v1/movies')
@@ -14,9 +16,13 @@ fetch('http://localhost:3000/api/v1/movies')
 // this function is automatically going to receive the info from the .then(rendermovies)
     function renderMovies(rando){
     const movies = rando["data"]
-    liElements = movies.map(function(movie){
-        let li = document.createElement('li') // putting in li form,  // li text will be the title
-        li.innerText = `${movie.attributes.title} - ${movie.attributes.year}`
+    const liElements = movies.map(function(movie){ // added const so that it is not a global variable
+        // const li is a const because even though it will be changing for each iteration through our elements, every iteration is actually its OWN scope. const are its own block scope so it is its own li that exists while it makes the li and then the NEXT li it works on it will start all over again brand new -- LIKE A FACTORY!
+        const li = document.createElement('li') // putting in li form,  // li text will be the title
+        li.innerText = `${movie.attributes.title}
+        Year: ${movie.attributes.year}, Rating: ${movie.attributes.rating}, Length: ${movie.attributes.length}
+          Description: ${movie.attributes.description}
+          🍿Watch it now: ${movie.attributes.watch}`
         // Must return when using map!
         return li
       })
