@@ -8,7 +8,7 @@ const yearInput = document.getElementById('movie-year')
 const ratingInput = document.getElementById('movie-rating')
 const lengthInput = document.getElementById('movie-length')
 const imageInput = document.getElementById('movie-image')
-const descriptionInput = document.getElementById('item-description')
+const descriptionInput = document.getElementById('movie-description')
 const watchInput = document.getElementById('movie-watch')
 
 
@@ -21,8 +21,6 @@ const watchInput = document.getElementById('movie-watch')
     // ^ this does not need () because I want to call it later on. I am just listing the definition for now
 
 
-
-
  // iterate over the array and for each movie I call a different function, when I finish filling out the form we will get data back that we can feed back into our renderMovies function
   function renderMovies(rando){
     const movies = rando["data"]
@@ -32,6 +30,8 @@ const watchInput = document.getElementById('movie-watch')
 }
 
 function renderMovie(movie){
+  // this function is automatically going to receive the info from the .then(rendermovies)
+   // const li is a const because even though it will be changing for each iteration through our elements, every iteration is actually its OWN scope. const are its own block scope so it is its own li that exists while it makes the li and then the NEXT li it works on it will start all over again brand new -- LIKE A FACTORY!
     const li = document.createElement('li')
     li.innerHTML = `
         <div data-id="${movie.id}">
@@ -46,23 +46,3 @@ function renderMovie(movie){
     movieslist.appendChild(li)
 }
 
-
-// // this function is automatically going to receive the info from the .then(rendermovies)
-//     function renderMovies(movie){
-//     const movies = rando["data"]
-//     const liElements = movies.map(function(movie){ // added const so that it is not a global variable
-//         // const li is a const because even though it will be changing for each iteration through our elements, every iteration is actually its OWN scope. const are its own block scope so it is its own li that exists while it makes the li and then the NEXT li it works on it will start all over again brand new -- LIKE A FACTORY!
-//         const li = document.createElement('li') // putting in li form,  // li text will be the title
-//         li.innerText = `${movie.attributes.title}
-//         Year: ${movie.attributes.year}, Rating: ${movie.attributes.rating}, Length: ${movie.attributes.length}
-//           Description: ${movie.attributes.description}
-//           🍿Watch it now: ${movie.attributes.watch}
-//           `
-//         // Must return when using map!
-//         return li
-//       })
-//     //   debugger
-//       liElements.forEach(element => { // I  have access to each li element and I can append each element
-//         movieslist.appendChild(element)
-//       });
-//     }
