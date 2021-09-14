@@ -3,6 +3,7 @@
 // third step: make it to where users can add a movie sucessfully! add an eventlistener, etc 😁 work on backend #need to bring category in
 // fourth step: get renderMovie(json.data) working so users don't have to refresh to see the change
 // fifth step: get the delete button working by adding an event listener, submit a fetch request to delete, then remove from DOM
+// sixth step: get the update button woring!
 
 
 
@@ -96,14 +97,31 @@ function renderMovie(movie){
     // const deleteButton= li.querySelector('.delete') // grabbing the correct delete button
     // deleteButton.addEventListener('click', deleteMovie) // adding an event listener to it to delete the movie
 }
-    // I can change my innerhtml w/o having to deal with adding/removing event listeners each time I make a change to my app
+    // I can change my innerhtml w/o having to deal with adding/removing event listeners each time I make a change to my app. Any clicks to the li
     function handleLiClick(e){
       if(e.target.innerText === "Edit Movie"){
-
+        e.target.innerText = "Save"
+        createEditFields(e.target) // editing the right one
       } else if (e.target.innerText === "Delete Movie"){
           deleteMovie(e)
+      } else if(e.target.innerText === "Save"){
+        e.target.innerText = "Edit"
       }
     }
+
+    function createEditFields(editButton){
+      // debugger make sure it is hitting the edit button
+      const li= editButton.parentElement
+      const div= editButton.parentElement.children[0]
+    
+
+      for(const e of div.children){
+        let inputValue = e.innerText
+        let title = e.classList[0]
+        e.outerHTML = `<input type="text" id="edit-${title}" value="${inputValue}">`
+      }
+    }
+
   // we are removing it before the fetch request, it is not pessimistic rendering; it is optimistic!
   function deleteMovie(e){
     e.target.parentElement.remove()
