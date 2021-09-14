@@ -2,10 +2,8 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :movies
-      # [:index, :create, :destroy]
-      resources :categories
-      #  only: [:index]
+      resources :movies, only: [:index, :create, :destroy]
+      resources :categories, only: [:index]
       # I do not want others to delete categories 
     end
   end

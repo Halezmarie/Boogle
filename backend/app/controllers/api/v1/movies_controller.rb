@@ -24,12 +24,12 @@ class Api::V1::MoviesController < ApplicationController
         end
     end
 
-    # def destroy 
-    #     # finding by the id itself
-    #     movie = Movie.find_by_id(params[:id])
-    #     movie.destroy
-    #     render json: {message: "👻You successfully deleted #{movie.title}!"}
-    # end
+    def destroy 
+        # finding by the id itself
+        movie = Movie.find_by_id(params[:id])
+        movie.destroy
+        render json: {message: "👻You successfully deleted #{movie.title}!"}
+    end
 
     # def update 
     #     movie = Movie.find(params[:id])
