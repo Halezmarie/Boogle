@@ -42,6 +42,9 @@ class Api::V1::MoviesController < ApplicationController
 
     # keep category ids?
     def movie_params
-        params.require(:movie).permit(:title, :year, :rating, :length, :description, :watch, :image, :category_ids [])
+        params.require(:movie).permit(:title, :year, :rating, :length, :description, :watch)
     end
 end
+
+# took images out for now 
+# and category ids []
