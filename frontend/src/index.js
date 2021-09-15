@@ -3,7 +3,7 @@
 // third step: make it to where users can add a movie sucessfully! add an eventlistener, etc 😁 work on backend #need to bring category in
 // fourth step: get renderMovie(json.data) working so users don't have to refresh to see the change
 // fifth step: get the delete button working by adding an event listener, submit a fetch request to delete, then remove from DOM
-// sixth step: get the update button woring!
+// sixth step: get the update button woring! - Need to save it into the database and turn the input back into a span
 
 
 
@@ -68,27 +68,33 @@ function renderMovies(rando){
     })
 }
 
+// using this for my edit
+function renderInnerLi(li, movie){
+  li.innerHTML = `
+        <div data-id="${movie.id}">
+            <strong class="title">${movie.attributes.title}</strong>
+           
+            <span class="year">${movie.attributes.year}</span>,
+            <span class="rating">${movie.attributes.rating}</span>,
+            <span class="length">${movie.attributes.length}</span>.
+            
+            <span class="description">${movie.attributes.description}</span>
+            
+            <span class="watch">${movie.attributes.watch}</span> 
+          
+        </div>
+        <button class="edit" data-id="${movie.id}"> Edit Movie </button>
+        <button class="delete" data-id="${movie.id}"> Delete Movie </button>`
+}
+
+
 function renderMovie(movie){
   // this function is automatically going to receive the info from the .then(rendermovies)
    // const li is a const because even though it will be changing for each iteration through our elements, every iteration is actually its OWN scope. const are its own block scope so it is its own li that exists while it makes the li and then the NEXT li it works on it will start all over again brand new -- LIKE A FACTORY!
     const li = document.createElement('li')
     li.dataset["id"] = movie.id
     li.id = `movieid-${movie.id}` // gives what movie it is when I inspect it on the page to help organize it 
-    li.innerHTML = `
-        <div data-id="${movie.id}">
-            <strong class="title">${movie.attributes.title}</strong>
-            <br>
-            <span class="year">${movie.attributes.year}</span>,
-            <span class="rating">${movie.attributes.rating}</span>,
-            <span class="length">${movie.attributes.length}</span>
-            <br>
-            <span class="length">${movie.attributes.description}</span>
-            <br>
-            Watch it: <span class="length">${movie.attributes.watch}</span>
-        </div>
-        <button class="edit" data-id="${movie.id}"> Edit Movie </button>
-        <button class="delete" data-id="${movie.id}"> Delete Movie </button>
-    `
+    renderInnerLi(li, movie)
     // make the buttons helpful to us by adding an id , adding class so that we are grabbing the correct button one button at a time
     movieslist.appendChild(li)
     li.addEventListener('click', handleLiClick)
@@ -101,24 +107,66 @@ function renderMovie(movie){
     function handleLiClick(e){
       if(e.target.innerText === "Edit Movie"){
         e.target.innerText = "Save"
-        createEditFields(e.target) // editing the right one
+        createFieldForEdits(e.target) // editing the right one
       } else if (e.target.innerText === "Delete Movie"){
           deleteMovie(e)
-      } else if(e.target.innerText === "Save"){
-        e.target.innerText = "Edit"
+      } else if(e.target.innerText === "Save"){ // when the user hits save they will  be led here
+        e.target.innerText = "Edit Movie"
+        // need to make patch request etc 
+        saveEditedMovie(e.target)
+
       }
     }
 
-    function createEditFields(editButton){
+    function saveEditedMovie(saveButton){
+      debugger
+      // debugger to make sure it is hitting this 
+      // patch request in here with the configobj and data we want
+      const li = saveButton.parentElement
+      const id = li.dataset.id // so that I can grab the id out of the dataset, lets me keep track of the id
+      const titleInput = li.querySelector(".edit-title")
+      const yearInput = li.querySelector(".edit-year")
+      const ratingInput = li.querySelector(".edit-rating")
+      const lengthInput = li.querySelector(".edit-length")
+      const descriptionInput = li.querySelector(".edit-description")
+      const watchInput = li.querySelector(".edit-watch")
+     
+      const movieDetails = {
+        title: titleInput.value,
+        year: yearInput.value,
+        rating: ratingInput.value,
+        length: lengthInput.value,
+        // image: imageInput.value,
+        description: descriptionInput.value,
+        watch: watchInput.value
+      }
+      // sending the fetch request to 
+      const configObj = {
+        method: 'PATCH',
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        // send in the meat of what our backend needs in a format that is safe to send across the internet and is correct
+        body: JSON.stringify(movieDetails)
+      }
+      fetch(`http://localhost:3000/api/v1/movies/${id}`, configObj)
+      .then(res => res.json())
+      .then(json => {
+        renderInnerLi(li, json.data)
+       // letting the edit be replaced in the same exact spot 
+    })
+  }
+
+    function createFieldForEdits(editButton){
       // debugger make sure it is hitting the edit button
-      const li= editButton.parentElement
-      const div= editButton.parentElement.children[0]
-    
+      const li = editButton.parentElement
+      const div = editButton.parentElement.children[0]
 
       for(const e of div.children){
         let inputValue = e.innerText
-        let title = e.classList[0]
-        e.outerHTML = `<input type="text" id="edit-${title}" value="${inputValue}">`
+        let name = e.classList[0]
+        e.outerHTML = `<input type="text" class="edit-${name}" value="${inputValue}">`
       }
     }
 
