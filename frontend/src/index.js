@@ -66,6 +66,8 @@ function getMovies(){
 function renderMovies(rando){
   const movies = rando["data"]
     movies.forEach(element => {
+      debugger
+        new Movie({id: element.id, ...element.attributes}) // using es6 syntax so I can access all of the info
         renderMovie(element)
     })
 }
