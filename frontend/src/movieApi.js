@@ -1,0 +1,1 @@
+// will be responsible for taking care of all the fetch requests for the movies in the app🤓
