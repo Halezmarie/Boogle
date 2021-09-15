@@ -66,9 +66,10 @@ function getMovies(){
 function renderMovies(rando){
   const movies = rando["data"]
     movies.forEach(element => {
-      debugger
-        new Movie({id: element.id, ...element.attributes}) // using es6 syntax so I can access all of the info
-        renderMovie(element)
+        const h = new Movie({id: element.id, ...element.attributes}) // using es6 syntax so I can access all of the info
+        // attaching to h so that it is being called on a movie object
+        h.attachDOM()
+        // renderMovie(element)
     })
 }
 
@@ -108,22 +109,22 @@ function renderMovie(movie){
     // deleteButton.addEventListener('click', deleteMovie) // adding an event listener to it to delete the movie
 }
     // I can change my innerhtml w/o having to deal with adding/removing event listeners each time I make a change to my app. Any clicks to the li
-    function handleLiClick(e){
-      if(e.target.innerText === "Edit Movie"){
-        e.target.innerText = "Save"
-        createFieldForEdits(e.target) // editing the right one
-      } else if (e.target.innerText === "Delete Movie"){
-          deleteMovie(e)
-      } else if(e.target.innerText === "Save"){ // when the user hits save they will  be led here
-        e.target.innerText = "Edit Movie"
-        // need to make patch request etc 
-        saveEditedMovie(e.target)
+    // MOVED OVER TO MOVIE.JS
+    // function handleLiClick(e){
+    //   if(e.target.innerText === "Edit Movie"){
+    //     e.target.innerText = "Save"
+    //     createFieldForEdits(e.target) // editing the right one
+    //   } else if (e.target.innerText === "Delete Movie"){
+    //       deleteMovie(e)
+    //   } else if(e.target.innerText === "Save"){ // when the user hits save they will  be led here
+    //     e.target.innerText = "Edit Movie"
+    //     // need to make patch request etc 
+    //     saveEditedMovie(e.target)
 
-      }
-    }
+    //   }
+    // }
 
     function saveEditedMovie(saveButton){
-      debugger
       // debugger to make sure it is hitting this 
       // patch request in here with the configobj and data we want
       const li = saveButton.parentElement
@@ -191,6 +192,18 @@ function renderMovie(movie){
       .then(json => alert(json.message))
   }
 
+  // handleLiClick(e){
+  //   if(e.target.innerText === "Edit Movie"){
+  //     e.target.innerText = "Save"
+  //     createFieldForEdits(e.target) // editing the right one
+  //   } else if (e.target.innerText === "Delete Movie"){
+  //       deleteMovie(e)
+  //   } else if(e.target.innerText === "Save"){ // when the user hits save they will  be led here
+  //     e.target.innerText = "Edit Movie"
+  //     // need to make patch request etc 
+  //     saveEditedMovie(e.target)
+
+  //   }
 
 
 getMovies()
