@@ -27,16 +27,21 @@ class Api::V1::MoviesController < ApplicationController
     def destroy 
         # finding by the id itself
         movie = Movie.find_by_id(params[:id])
-        movie.destroy
-        render json: {message: "👻You successfully deleted #{movie.title}!"}
+        if movie.destroy
+            render json: {message: "👻You successfully deleted #{movie.title}!"}
+        else 
+            render json: {error: "👻 Oh no! You couldn't delete #{movie.title}!"}
+        end
     end
 
-    # def update 
-    #     movie = Movie.find(params[:id])
-    #     if movie update(movie_params)
-    #         render json: MovieSerializer.new(movie)
-    #     end
-    # end
+    def update 
+        movie = Movie.find(params[:id])
+        if movie.update(movie_params)
+            render json: MovieSerializer.new(movie)
+        else 
+            render json: {error: "👻 Oh no! You couldn't update #{movie.title}!"}
+        end
+    end
         
     private
 
