@@ -1,5 +1,6 @@
+
 body {
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
     font-weight: 300;
     line-height: 1.4em;
     font-size: 1.3em;
@@ -13,7 +14,7 @@ body {
    font-size: 1.0em;
  }
  
- .container {
+ .container1 {
    width: 600px;
    margin:auto;
    margin-top:0px;
@@ -23,3 +24,16 @@ body {
    padding-left: 20px;
  }
  
+
+ body {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  align-items: center;
+
+}
+
+h1 {
+  color: white;
+  align-items: center;
+  text-align: center;
+}

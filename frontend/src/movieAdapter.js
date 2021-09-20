@@ -15,15 +15,11 @@ class MovieAdapter{
           // => can be written as a function, either way is fine! it is just faster with =>
           // magic
           .then( json => {
-            const movies = json["data"]
-          movies.forEach(element => {
-                const h = new Movie({id: element.id, ...element.attributes}) // using es6 syntax so I can access all of the info
-                // attaching to h so that it is being called on a movie object
-                h.attachDOM()
-                // renderMovie(element)
+            json["data"].forEach(element => {
+                const i = new Movie({id: element.id, ...element.attributes})
+                i.attachDOM()
             })
-          // ^ this does not need () because I want to call it later on. I am just listing the definition for now
-      })
+        })
     }
       movieCreation(){
         const movieDetails = {
@@ -33,7 +29,8 @@ class MovieAdapter{
             length: lengthInput.value,
             // image: imageInput.value,
             description: descriptionInput.value,
-            watch: watchInput.value
+            watch: watchInput.value,
+             category_id: dropdown.value
           }
           // sending the fetch request to 
           const configObj = {
@@ -49,9 +46,31 @@ class MovieAdapter{
           fetch(this.baseUrl, configObj)
             .then(res => res.json())
             .then(json => {
-              const h = new Movie({id: json.data.id, ...json.data.attributes})
-              h.attachDOM()
+              const i = new Movie({id: json.data.id, ...json.data.attributes})
+              i.attachDOM()
               //  renderMovie(json.data)) // not having to refresh each time
+
+              if(!Category.all.find((c) => c.id == i.categoryId)){
+                let categoryObj = new Category({id: i.categoryId, name: json.data.attributes.category_name})
+                categoryObj.attachDOM()
+                categoryObj.addToDropDown()
+             }
         })
       }
+
+
+    deleteMovie = (id) => {
+        const configObj = {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            }
+        }
+
+        fetch(`${port}/movies/${id}`, configObj)
+            .then(r => r.json())
+            .then(json => alert(json.message))
+      }
+
 }

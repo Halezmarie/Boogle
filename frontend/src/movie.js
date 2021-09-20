@@ -15,8 +15,9 @@ class Movie{
         this.description = description
         this.watch = watch
         this.id = id
+        this.categoryId = category_id
 
-        // propertities - the HTML element that has the movie
+        // properties - the HTML element that has the movie
         // if I go into another  instance function inside of this class, I have access to this li and later I could attach it to the DOM. this li/this element
         this.li = document.createElement('li')
         this.li.dataset["id"] = id
@@ -28,41 +29,53 @@ class Movie{
         Movie.all.push(this)
     }
 
-    render(){
-        this.li.innerHTML = `
-            <div data-id="${this.id}">
-                <strong class="title">${this.title}</strong>
-            
-                <span class="year">${this.year}</span>,
-                <span class="rating">${this.rating}</span>,
-                <span class="length">${this.length}</span>.
-                
-                <span class="description">${this.description}</span>
-                
-                <span class="watch">${this.watch}</span> 
-            
-            </div>
-            <button class="edit" data-id="${this.id}"> Edit Movie </button>
-            <button class="delete" data-id="${this.id}"> Delete Movie </button>
-        `
-        return this.li
-    }
-
-        handleLiClick = (e) => {
-            if(e.target.innerText === "Edit Move"){
-                e.target.innerText = "Save"
-                this.createFieldForEdits(e.target)
-            } else if (e.target.innerText === "Delete Movie"){
-                this.deleteMovie(e)
-            } else if(e.target.innerText === "Save"){
-                e.target.innerText = "Edit Movie"
-                // save this info to the DB
-                // turn all input fields back into spans
-                this.saveEditedMovie()
+    static filterByMovieCategory(filteredCategory){
+        if(filteredCategory){
+            for(const movie of Movie.all){
+                if(movie.categoryId === parseInt(filteredCategory.id)){
+                    movie.li.style.display = "";
+                }else{
+                    movie.li.style.display = "none";
+                }
+            }
+        } else {
+     
+      
+            for(const movie of Movie.all){
+              movie.li.style.display = ""
+            }
+      }
+  }
+        handleLiClick = (li) => {
+            if (li.target.innerText === "Delete Movie"){
+                this.deleteMovie(li)
             }
         }
 
-        
+        // we are removing it before the fetch request, it is not pessimistic rendering; it is optimistic!
+        deleteMovie = (li) => {
+            this.li.remove() // remove it before the fetch request 
+            movieAdapter.deleteMovie(this.id)
+        }
+
+
+        render(){
+            this.li.innerHTML = `
+                <div data-id="${this.id}">
+                    <strong class="title">${this.title}</strong>
+                
+                    <span class="year">${this.year}</span>,
+                    <span class="rating">${this.rating}</span>,
+                    <span class="length">${this.length}</span>.
+                    
+                    <span class="description">${this.description}</span>
+                    
+                    <span class="watch">${this.watch}</span> 
+                </div>
+                <button class="Delete" data-id="${this.id}"> Delete Movie </button>
+            `
+            return this.li
+        }
 
     attachDOM(){
         // it is going to return the .li, still attaching to the DOM and load all of the inner html 

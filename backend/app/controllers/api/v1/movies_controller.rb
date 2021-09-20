@@ -15,11 +15,10 @@ class Api::V1::MoviesController < ApplicationController
 
     def create 
         movie = Movie.new(movie_params)
-        movie.category = Category.last # will change this when I work on my categories in the frontend
-        # only if the movie saves then render json
         if movie.save
             render json: MovieSerializer.new(movie)
         else
+            byebug
             render json: {error: "👻 Oh no! You couldn't save #{movie.title}!"}
         end
     end
@@ -47,9 +46,8 @@ class Api::V1::MoviesController < ApplicationController
 
     # keep category ids?
     def movie_params
-        params.require(:movie).permit(:title, :year, :rating, :length, :description, :watch)
+        params.require(:movie).permit(:title, :year, :rating, :length, :description, :watch, :category_id)
     end
 end
 
-# took images out for now 
-# and category ids []
+# took images out for now, would like to add it back 

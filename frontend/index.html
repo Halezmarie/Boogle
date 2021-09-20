@@ -9,10 +9,22 @@
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
 </head>
 <body>
-    <div class="container">
     <h1>👻Boogle👻</h1>
+    <h2>Filter the movies by a scary category:</h2>
+    <p> Here's how we break down the categories here at 👻Boogle👻 (Thanks to Wikipedia!)
+        <br>
+        <li>Serial Killer🔪: Documentaries about real serial killers and fictional films about either real or fictional serial killers. </li>
+        <li>Thriller😨: Thrillers are characterized and defined by the moods they elicit, giving viewers heightened feelings of suspense, excitement, surprise, anticipation and anxiety.</li>
+        <li>Supernatural🧙‍♂️: Exploits or is centered on supernatural themes, often contradicting naturalist assumptions of the real world. </li>
+        <li>Sci-Fi🤖: Uses speculative, fictional science-based depictions of phenomena that are not fully accepted by mainstream science, such as extraterrestrial lifeforms, spacecraft, robots, cyborgs, interstellar travel or other technologies.</li>
+        <br>
+    </p>
+    <div class="container1">
+    <div id="category-container"></div>
+
+ 
     <br><br>
-    <h3> These are all of the Boogle movies we have so far:</h3>
+    <h3> Check out our Boogle movies:</h3>
     <ul id="movies"</ul>
     </ul>
 
@@ -20,12 +32,20 @@
     <h4> Do you want to add a spoooooky movie to Boogle?!👻
         <br><br><br>
     <form id="movie-form">
+        <label for="category-dropdown">Category:</label>
+        <select name="categoryId" id="category-dropdown">
+                    <!-- <option value= "1">Serial Killer</option>
+                    <option value= "2">Supernatural</option>
+                    <option value= "3">Thriller</option>
+                    <option value= "4">Science Fiction</option> -->
+        </select>
+        <br><br>
         <label for="movie-title">Title:</label>
         <input type="text" title="title" id="movie-title">
         <br><br>
         <label for="movie-year">Year:</label>
         <input type="number" year="year"  id="movie-year" min="1888" max="2022"
-        <br><br>
+        <br><br><br>
         <label for="movie-rating">Rating:</label>
         <input type="text" year="rating" id="movie-rating">
         <br><br>
