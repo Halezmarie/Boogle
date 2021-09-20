@@ -34,10 +34,12 @@ class Api::V1::MoviesController < ApplicationController
         
     private
 
-    # keep category ids?
+    
     def movie_params
         params.require(:movie).permit(:title, :year, :rating, :length, :description, :watch, :category_id)
     end
+
+    
 end
 
 # took images out for now, would like to add it back 
