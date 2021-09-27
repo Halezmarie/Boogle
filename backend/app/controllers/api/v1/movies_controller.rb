@@ -17,8 +17,6 @@ class Api::V1::MoviesController < ApplicationController
         movie = Movie.new(movie_params)
         if movie.save
             render json: MovieSerializer.new(movie)
-        else
-            render json: {error: "👻 Oh no! You couldn't save #{movie.title}! Please make sure everything is filled out correctly."}
         end
     end
 
@@ -27,8 +25,6 @@ class Api::V1::MoviesController < ApplicationController
         movie = Movie.find_by_id(params[:id])
         if movie.destroy
             render json: {message: "👻You successfully deleted #{movie.title}!"}
-        else 
-            render json: {error: "👻 Oh no! You couldn't delete #{movie.title}!"}
         end
     end
         
