@@ -6,7 +6,6 @@ class MovieAdapter{
     constructor(port) {
         this.baseUrl = `${port}/movies`
       }
-
     // static because they are easier to call, static function get referred to their class and then I call the name
     getMovies(){
         fetch(this.baseUrl)
@@ -30,7 +29,7 @@ class MovieAdapter{
             // image: imageInput.value,
             description: descriptionInput.value,
             watch: watchInput.value,
-             category_id: dropdown.value
+            category_id: dropdown.value
           }
           // sending the fetch request to 
           const configObj = {
@@ -58,7 +57,6 @@ class MovieAdapter{
         })
       }
 
-
     deleteMovie = (id) => {
         const configObj = {
             method: 'DELETE',
@@ -72,5 +70,4 @@ class MovieAdapter{
             .then(r => r.json())
             .then(json => alert(json.message))
       }
-
 }

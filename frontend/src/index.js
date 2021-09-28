@@ -5,9 +5,12 @@
 // fifth step: get the delete button working by adding an event listener, submit a fetch request to delete, then remove from DOM
 // sixth step: get the update button working! - Need to save it into the database and turn the input back into a span
 // seventh step: convert to OOS by making classes and organizing things for my movies 😎
+// eighth step: formatting, checking to see how to make my code better -- DO NOT BREAK IT
 
 
 // really helpful for when my project gets bigger
+// I could wrap all of this into an object as well
+// defining what I need and what will be grabbed throughout the app 
 const port = "http://localhost:3000/api/v1"
 const movieAdapter = new MovieAdapter(port)
 const categoryAdapter = new CategoryAdapter(port)
@@ -33,7 +36,8 @@ function handleSubmit(event){
   event.target.reset()
 }
 
-
+movieAdapter.getMovies()
+categoryAdapter.getCategories()
 
 // // function getMovies(){
 // //   fetch('http://localhost:3000/api/v1/movies')
@@ -188,7 +192,3 @@ function handleSubmit(event){
   //     saveEditedMovie(e.target)
 
   //   }
-
-
-movieAdapter.getMovies()
-categoryAdapter.getCategories()

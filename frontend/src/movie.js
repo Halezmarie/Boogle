@@ -23,8 +23,6 @@ class Movie{
         this.li.dataset["id"] = id
         this.li.id = `movieid-${id}` // gives what movie it is when I inspect it on the page to help organize it 
         this.li.addEventListener('click', this.handleLiClick)
-
-
         // no code gets left behind
         Movie.all.push(this)
     }
@@ -58,7 +56,6 @@ class Movie{
             movieAdapter.deleteMovie(this.id)
         }
 
-
         render(){
             this.li.innerHTML = `
                 <div data-id="${this.id}">
@@ -69,10 +66,11 @@ class Movie{
                     <span class="length">${this.length}</span>.
                     
                     <span class="description">${this.description}</span>
-                    
-                    <span class="watch">${this.watch}</span> 
+                    <br><br>
+                    <span class="watch">Watch it here: ${this.watch}</span> 
                 </div>
                 <button class="Delete" data-id="${this.id}"> Delete Movie </button>
+                _______________________________________________________
             `
             return this.li
         }
@@ -81,6 +79,5 @@ class Movie{
         // it is going to return the .li, still attaching to the DOM and load all of the inner html 
         Movie.movieContainer.appendChild(this.render())
         // class level 
-
     }
 }

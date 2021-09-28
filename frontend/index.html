@@ -28,8 +28,9 @@
     <ul id="movies"</ul>
     </ul>
 
-    <br><br><br>
-    <h4> Do you want to add a spoooooky movie to Boogle?!👻
+    <br><br>
+    <h4> Do you want to add a spoooooky movie to Boogle?👻<br>
+        Please be sure to fill out everything. 
         <br><br><br>
     <form id="movie-form">
         <label for="category-dropdown">Category:</label>
@@ -41,7 +42,7 @@
         </select>
         <br><br>
         <label for="movie-title">Title:</label>
-        <input type="text" title="title" id="movie-title">
+        <input type="text" title="title" id="movie-title" style="height:25px;width:450px"<br>
         <br><br>
         <label for="movie-year">Year:</label>
         <input type="number" year="year"  id="movie-year" min="1888" max="2022"
@@ -56,10 +57,11 @@
         <input type="image" image="image" id="movie-image"> -->
         <br><br>
         <label for="movie-description">Description:</label>
-        <input type="text" description="description" id="movie-description">
+        <textarea class="txtarea" style="height:200px;width:500px" description="description" id="movie-description"> </textarea>
+        <!-- <input type="textarea" description="description" id="movie-description" style="height:200px;width:500px"<br><br> -->
         <br><br>
         <label for="movie-watch">Watch:</label>
-        <input type="text" watch="watch" id="movie-watch">
+        <input type="url" watch="watch" id="movie-watch">
         <br><br>
         <input type="submit" value="Create Movie">
     </form>
