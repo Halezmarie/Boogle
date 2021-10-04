@@ -3,6 +3,7 @@
 
 class MovieAdapter{
 
+    // port is the very base piece, easier to change the const defining port than it is to change each and every place I have my local host at. 
     constructor(port) {
         this.baseUrl = `${port}/movies`
       }
@@ -15,10 +16,15 @@ class MovieAdapter{
           // magic
           .then( json => {
             json["data"].forEach(element => {
+              // iterated through
+
+              // spread operator, attributes is a key inside of an element. The spread operator takes everything that is inside of the element object (attributes) and spreads out the objects inside of this current object. 
+              // Spread syntax allows you to spread an array into an object (arrays are technically objects, as is mostly everything in js). When you spread an array into an object, it will add a key: value pair to the object for each array item, where the key is the index and the value is the value stored at that index in the array. It will come out as id: 1, title: "conjuiring", rating, "R" etc list all the KEYS and VALUES. <- so I can use the constructor and get everything I want from it in the format that I need.
                 const i = new Movie({id: element.id, ...element.attributes})
+                // insantiate a new movie and then it will attach to the dom next 
                 i.attachDOM()
             })
-        })
+          })
     }
       movieCreation(){
         const movieDetails = {
@@ -26,7 +32,6 @@ class MovieAdapter{
             year: yearInput.value,
             rating: ratingInput.value,
             length: lengthInput.value,
-            // image: imageInput.value,
             description: descriptionInput.value,
             watch: watchInput.value,
             category_id: dropdown.value
@@ -48,16 +53,16 @@ class MovieAdapter{
               const i = new Movie({id: json.data.id, ...json.data.attributes})
               i.attachDOM()
               //  renderMovie(json.data)) // not having to refresh each time
-
-              if(!Category.all.find((c) => c.id == i.categoryId)){
-                let categoryObj = new Category({id: i.categoryId, name: json.data.attributes.category_name})
+              // let the category object equal to the category id joining with the movie so that they can be displayed together correctly on the DOM
+              {let categoryObj = Category({id: i.categoryId})
                 categoryObj.attachDOM()
                 categoryObj.addToDropDown()
              }
-        })
+          })
       }
 
     deleteMovie = (id) => {
+       // sending the fetch request to 
         const configObj = {
             method: 'DELETE',
             headers: {
@@ -65,9 +70,8 @@ class MovieAdapter{
                 Accept: "application/json"
             }
         }
-
         fetch(`${port}/movies/${id}`, configObj)
             .then(r => r.json())
-            .then(json => alert(json.message))
+            .then(json => alert(json.message)) // succesfully deleted movie
       }
 }

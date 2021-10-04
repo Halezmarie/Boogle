@@ -40,3 +40,19 @@ h1 {
 form, input, textarea { 
   border-radius: 10px; 
 }
+
+input#show, input#hide {
+  display:all;
+}
+
+span#content {
+  display:all;
+}
+input#show:checked ~ span#content {
+display:all;
+}
+
+input#hide:checked ~ span#content {
+  display:none;
+}
+

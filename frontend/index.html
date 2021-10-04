@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>👻Boogle👻</title>
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    
 </head>
 <body>
     <h1>👻Boogle👻</h1>
@@ -25,6 +26,20 @@
  
     <br><br>
     <h3> Check out our Boogle movies:</h3>
+
+    <div class="all-movies">
+    <label for="show">
+        <span>Show All Movies</span>
+    </label>
+    <input type=radio id="show" name="group">
+    <label for="hide">
+        <span>Hide</span> 
+    </label>    
+    <input type=radio id="hide" name="group">
+    <span id="content"><ul id="movies"</ul></span>
+    </div>
+ 
+
     <ul id="movies"</ul>
     </ul>
 
@@ -35,10 +50,6 @@
     <form id="movie-form">
         <label for="category-dropdown">Category:</label>
         <select name="categoryId" id="category-dropdown">
-                    <!-- <option value= "1">Serial Killer</option>
-                    <option value= "2">Supernatural</option>
-                    <option value= "3">Thriller</option>
-                    <option value= "4">Science Fiction</option> -->
         </select>
         <br><br>
         <label for="movie-title">Title:</label>
@@ -52,13 +63,9 @@
         <br><br>
         <label for="movie-length">Length:</label>
         <input type="text" length="length" id="movie-length">
-        <!-- <br><br> -->
-        <!-- <label for="movie-image">Image:</label>
-        <input type="image" image="image" id="movie-image"> -->
         <br><br>
         <label for="movie-description">Description:</label>
         <textarea class="txtarea" style="height:200px;width:500px" description="description" id="movie-description"> </textarea>
-        <!-- <input type="textarea" description="description" id="movie-description" style="height:200px;width:500px"<br><br> -->
         <br><br>
         <label for="movie-watch">Watch:</label>
         <input type="url" watch="watch" id="movie-watch">

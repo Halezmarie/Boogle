@@ -8,7 +8,7 @@
 // eighth step: formatting, checking to see how to make my code better -- DO NOT BREAK IT
 
 
-// really helpful for when my project gets bigger
+// really helpful for when my project gets bigger, it runs off the port
 // I could wrap all of this into an object as well
 // defining what I need and what will be grabbed throughout the app 
 const port = "http://localhost:3000/api/v1"
@@ -20,65 +20,27 @@ const titleInput = document.getElementById('movie-title')
 const yearInput = document.getElementById('movie-year')
 const ratingInput = document.getElementById('movie-rating')
 const lengthInput = document.getElementById('movie-length')
-// const imageInput = document.getElementById('movie-image')
 const descriptionInput = document.getElementById('movie-description')
 const watchInput = document.getElementById('movie-watch')
-const categoryNameInput = document.getElementById("category-name")
 const dropdown = document.getElementById('category-dropdown')
 
-
 form.addEventListener('submit', handleSubmit)
-
 function handleSubmit(event){
   // always add a prevent default when handling a submit so that it waits for the user to click 
   event.preventDefault(),
+  // 
+  // my movie api/adapter is where my movieCreation function is -I am creating a movie from the properties from movieCreation
   movieAdapter.movieCreation(),
+  // clear and resets the text field
   event.target.reset()
 }
 
+
+// calling on my movie adapter to get the movies that are pre created and the categories that have been already  - each time the user goes to Boogle
 movieAdapter.getMovies()
-categoryAdapter.getCategories()
-
-// // function getMovies(){
-// //   fetch('http://localhost:3000/api/v1/movies')
-// // // always after a fetch request we must handle our response with a .then. We need to convert it so that it is readable and usable! That is why we parse the JSON. string value > data we can use
-// //     .then(res => res.json())
-// //     // => can be written as a function, either way is fine! it is just faster with =>
-// //     // magic
-// //     .then(renderMovies)
-// //     // ^ this does not need () because I want to call it later on. I am just listing the definition for now
-// // }
+categoryAdapter.getCategories() // my dropdown of the categories 
 
 
-//  // iterate over the array and for each movie I call a different function, when I finish filling out the form we will get data back that we can feed back into our renderMovies function
-// // function renderMovies(rando){
-// //   const movies = rando["data"]
-// //     movies.forEach(element => {
-// //         const h = new Movie({id: element.id, ...element.attributes}) // using es6 syntax so I can access all of the info
-// //         // attaching to h so that it is being called on a movie object
-// //         h.attachDOM()
-// //         // renderMovie(element)
-// //     })
-// // }
-
-// // using this for my edit
-// function renderInnerLi(li, movie){
-//   li.innerHTML = `
-//         <div data-id="${movie.id}">
-//             <strong class="title">${movie.attributes.title}</strong>
-           
-//             <span class="year">${movie.attributes.year}</span>,
-//             <span class="rating">${movie.attributes.rating}</span>,
-//             <span class="length">${movie.attributes.length}</span>.
-            
-//             <span class="description">${movie.attributes.description}</span>
-            
-//             <span class="watch">${movie.attributes.watch}</span> 
-          
-//         </div>
-//         <button class="edit" data-id="${movie.id}"> Edit Movie </button>
-//         <button class="delete" data-id="${movie.id}"> Delete Movie </button>`
-// }
 
 
 // // function renderMovie(movie){
@@ -191,4 +153,4 @@ categoryAdapter.getCategories()
   //     // need to make patch request etc 
   //     saveEditedMovie(e.target)
 
-  //   }
+  // 
