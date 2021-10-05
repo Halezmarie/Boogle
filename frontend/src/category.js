@@ -63,5 +63,6 @@ class Category{
         option.value  = this.id // create the value of the dropdown - what it represents like the id, 1, 2, 3, 4 - better to do this instead of hard coding it 
         option.innerText = this.name // gave it the text, where we see the category name 
         dropdown.append(option) // appended it to the dropdown
-    } 
+    }
+ 
 }

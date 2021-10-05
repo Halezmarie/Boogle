@@ -16,7 +16,6 @@ class MovieAdapter{
           // magic
           .then( json => {
             json["data"].forEach(element => {
-              // iterated through
 
               // spread operator, attributes is a key inside of an element. The spread operator takes everything that is inside of the element object (attributes) and spreads out the objects inside of this current object. 
               // Spread syntax allows you to spread an array into an object (arrays are technically objects, as is mostly everything in js). When you spread an array into an object, it will add a key: value pair to the object for each array item, where the key is the index and the value is the value stored at that index in the array. It will come out as id: 1, title: "conjuiring", rating, "R" etc list all the KEYS and VALUES. <- so I can use the constructor and get everything I want from it in the format that I need.
@@ -53,8 +52,11 @@ class MovieAdapter{
               const i = new Movie({id: json.data.id, ...json.data.attributes})
               i.attachDOM()
               //  renderMovie(json.data)) // not having to refresh each time
-              // let the category object equal to the category id joining with the movie so that they can be displayed together correctly on the DOM
-              {let categoryObj = Category({id: i.categoryId})
+
+              // if the category can find the right id for the movie id then let the category object be placed in it's correct category that the user chooses. Let the category object equal the new category being created with the movie it is paired with 
+              // if(!Category.all.find((c) => c.id == i.categoryId)) don't need this code 
+              {
+                let categoryObj = new Category({id: i.categoryId})
                 categoryObj.attachDOM()
                 categoryObj.addToDropDown()
              }
@@ -62,7 +64,6 @@ class MovieAdapter{
       }
 
     deleteMovie = (id) => {
-       // sending the fetch request to 
         const configObj = {
             method: 'DELETE',
             headers: {
