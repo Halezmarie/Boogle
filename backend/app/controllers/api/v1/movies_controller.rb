@@ -7,11 +7,12 @@ class Api::V1::MoviesController < ApplicationController
         render json: MovieSerializer.new(organized_movies)
     end
 
-    # Do I need to keep a show? ***
+
     def show 
         movie = Movie.find(params[:id])
         render json: movie.to_json(except: [:created_at, :updated_at], include: {category: {only: [:name]}})
     end
+
 
     def create 
         movie = Movie.new(movie_params)
@@ -27,15 +28,12 @@ class Api::V1::MoviesController < ApplicationController
             render json: {message: "👻You successfully deleted #{movie.title}!"}
         end
     end
-        
-    private
 
+    
+    private
     
     def movie_params
         params.require(:movie).permit(:title, :year, :rating, :length, :description, :watch, :category_id)
     end
-
     
 end
-
-# took images out for now, would like to add it back 
