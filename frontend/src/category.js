@@ -2,10 +2,10 @@
 // step one: instantiate the categories
 
 class Category{
-    // static is a class variable, each time a movie is instantiated coming through the constructor things will be PUSHED into the static all variable /empty array
+    // static is a class variable, each time a movie is instantiated coming through the constructor things will be PUSHED into the static all variable /empty array to keep track of everything -- similar to the @@all in rails
     static all = []
 
-    static categoryContainer = document.getElementById('category-container') // grabbing the category container because...........
+    static categoryContainer = document.getElementById('category-container') // grabbing the category container
 
      // constructor is my initalizer and is where I will put the properies of the categories; I am setting the properties of the categories
     // deconstructing the id and name ({id: element.id, ...element}) then give variables back with the same names. 
@@ -21,9 +21,7 @@ class Category{
         // ^ this is a way to reuse my code grabbing category.all and sorting/filtering them etc
     }
 
-    // proper word usage: "I made functions to be used throughout my app" ????
-
-    // Get all movie and filter them with the category id to be used properly (?)
+    // Get all movie and filter them with the category id to be used properly
     movies(){
         return Movie.all.filter((movie) => movie.categoryId == this.id)
     }
@@ -71,5 +69,5 @@ class Category{
         option.innerText = this.name // gave it the text, where we see the category name 
         dropdown.append(option) // appended it to the dropdown
     }
- 
+
 }

@@ -58,15 +58,15 @@ class MovieAdapter{
       }
 
     deleteMovie = (id) => {
-        const configObj = {
-            method: 'DELETE',
+        const configObj = { // all the data I am sending and how I want it to be interpreted 
+            method: 'DELETE', 
             headers: {
                 "Content-Type": "application/json",
                 Accept: "application/json"
             }
         }
-        fetch(`${port}/movies/${id}`, configObj)
-            .then(r => r.json())
+        fetch(`${port}/movies/${id}`, configObj) // config is telling the user to delete
+            .then(r => r.json()) // handling the response by converting it
             .then(json => alert(json.message)) // succesfully deleted movie
       }
 }

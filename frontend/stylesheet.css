@@ -41,6 +41,19 @@ form, input, textarea {
   border-radius: 10px; 
 }
 
+button {
+  background-color: black;
+  color: limegreen;
+  text-align: center;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.activated {
+  background-color:rgb(0, 0, 0);
+  color: white;
+}
+
 input#show, input#hide {
   display:all;
 }
