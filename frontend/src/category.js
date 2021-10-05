@@ -1,11 +1,13 @@
-class Category{
+// categories will become a category class and it will be in charge of: settings the properties of each category, remembering all of the categories, the html I want to put on the DOM for each movie, and attach event listeners that goes with the category
+// step one: instantiate the categories
 
+class Category{
     // static is a class variable, each time a movie is instantiated coming through the constructor things will be PUSHED into the static all variable /empty array
     static all = []
 
-    static categoryContainer = document.getElementById('category-container')
+    static categoryContainer = document.getElementById('category-container') // grabbing the category container because...........
 
-     // constructor is my initalizer and is where I will put the properies of the categories; I am setting the propertities of the categories
+     // constructor is my initalizer and is where I will put the properies of the categories; I am setting the properties of the categories
     // deconstructing the id and name ({id: element.id, ...element}) then give variables back with the same names. 
     // id is the category ids, 1 2 3 4 left to right 
     constructor({id, name }){
@@ -19,6 +21,9 @@ class Category{
         // ^ this is a way to reuse my code grabbing category.all and sorting/filtering them etc
     }
 
+    // proper word usage: "I made functions to be used throughout my app" ????
+
+    // Get all movie and filter them with the category id to be used properly (?)
     movies(){
         return Movie.all.filter((movie) => movie.categoryId == this.id)
     }
@@ -29,6 +34,7 @@ class Category{
         this.li.id = `category-${this.id}`
         return this.li
     }
+
     // add event listeners so that they can listen for when the category buttons are clicked 
     attachDOM(){
         Category.categoryContainer.append(this.render())
@@ -40,6 +46,7 @@ class Category{
         this.li.addEventListener('click', this.setChosenCategory)
     }
 
+    // go through this more
     setChosenCategory = (e) => {
         let filteredCategory // define it as a variable
         Category.all.forEach(c => {
