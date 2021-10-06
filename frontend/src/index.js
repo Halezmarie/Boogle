@@ -7,7 +7,6 @@
 // seventh step: convert to OOS by making classes and organizing things for my movies 😎
 // eighth step: formatting, checking to see how to make my code better -- DO NOT BREAK IT
 
-
 // really helpful for when my project gets bigger, it runs off the port also helps not typing in the url each time 
 // I could wrap all of this into an object as well
 // defining what I need and what will be grabbed throughout the app 
@@ -24,12 +23,13 @@ const descriptionInput = document.getElementById('movie-description')
 const watchInput = document.getElementById('movie-watch')
 const dropdown = document.getElementById('category-dropdown')
 
-form.addEventListener('submit', handleSubmit)
+
+form.addEventListener('submit', handleSubmit) 
 function handleSubmit(event){
   // always add a prevent default when handling a submit so that it waits for the user to click 
-  event.preventDefault(),
+  event.preventDefault()
   // my movie api/adapter is where my movieCreation function is -I am creating a movie from the properties from movieCreation
-  movieAdapter.movieCreation(),
+  movieAdapter.movieCreation()
   // clear and resets the text field
   event.target.reset()
 }
@@ -37,8 +37,6 @@ function handleSubmit(event){
 // calling on my movie adapter to get the movies that are pre created and the categories that have been already  - each time the user goes to Boogle
 movieAdapter.getMovies()
 categoryAdapter.getCategories() // my dropdown of the categories 
-
-
 
 // // function renderMovie(movie){
 //   // this function is automatically going to receive the info from the .then(rendermovies)
