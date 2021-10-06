@@ -1,18 +1,18 @@
 class Api::V1::MoviesController < ApplicationController
 
+    # setting it up to communicate to the frontend and the backend and using CORS. 
+
     def index 
-        # do not need instance variable because we are not rendering views
+        # do not need instance variable because we are not rendering views/ not referencing it outside 
         movies = Movie.all
         organized_movies = movies.order(:title)
         render json: MovieSerializer.new(organized_movies)
     end
 
-
     def show 
         movie = Movie.find(params[:id])
         render json: movie.to_json(except: [:created_at, :updated_at], include: {category: {only: [:name]}})
     end
-
 
     def create 
         movie = Movie.new(movie_params)
@@ -28,7 +28,6 @@ class Api::V1::MoviesController < ApplicationController
             render json: {message: "👻You successfully deleted #{movie.title}!"}
         end
     end
-
     
     private
     
