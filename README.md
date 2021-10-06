@@ -1,4 +1,4 @@
-# Boogle
+# 👻Boogle👻
 
 Boogle is for everyone who loves scary movies. Users can view, create, and delete movies. When the user creates the movie, they can add the title, year, rating, length, description, and where to watch it. 
 If you would like to check out my app, please read below
