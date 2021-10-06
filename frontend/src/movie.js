@@ -68,15 +68,12 @@ class Movie{
             this.li.innerHTML = `
                 <div data-id="${this.id}">
                     <strong class="title">${this.title}</strong>
-
                     <span class="year">${this.year}</span>,
                     <span class="rating">${this.rating}</span>,
                     <span class="length">${this.length}</span>.
-                    
                     <span class="description">${this.description}</span>
-                    <br><br>
-                    <span class="watch">Watch it here: ${this.watch}</span> 
                 </div>
+                <a href="${this.watch}"><button>Watch Me!</button></a>
                 <button class="Delete" data-id="${this.id}"> Delete Movie </button>
                 _______________________________________________
             `
