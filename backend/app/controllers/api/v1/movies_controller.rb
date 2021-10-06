@@ -1,9 +1,6 @@
 class Api::V1::MoviesController < ApplicationController
 
-    # setting it up to communicate to the frontend and the backend and using CORS. 
-
     def index 
-        # do not need instance variable because we are not rendering views/ not referencing it outside 
         movies = Movie.all
         organized_movies = movies.order(:title)
         render json: MovieSerializer.new(organized_movies)
