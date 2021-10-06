@@ -49,6 +49,7 @@ class Movie{
       }
     }
 
+
         // arrow function because it is used as a callback in an event listener
         handleLiClick = (li) => {
             if (li.target.innerText === "Delete Movie"){ // if inner text is delete movie
@@ -77,7 +78,7 @@ class Movie{
                     <span class="watch">Watch it here: ${this.watch}</span> 
                 </div>
                 <button class="Delete" data-id="${this.id}"> Delete Movie </button>
-                _______________________________________________________
+                _______________________________________________
             `
             return this.li
         }

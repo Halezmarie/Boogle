@@ -4,7 +4,6 @@
 class Category{
     // static is a class variable, each time a movie is instantiated coming through the constructor things will be PUSHED into the static all variable /empty array to keep track of everything -- similar to the @@all in rails
     static all = []
-
     static categoryContainer = document.getElementById('category-container') // grabbing the category container
 
      // constructor is my initalizer and is where I will put the properies of the categories; I am setting the properties of the categories
@@ -46,7 +45,7 @@ class Category{
 
     // go through this more
     setChosenCategory = (e) => {
-        let filteredCategory // define it as a variable
+        let filteredCategory // define it as a variable, has to be let because I am not declaring it, I am changing it in my if else statement
         Category.all.forEach(c => {
             if(c.li === this.li && !this.active){
                 // inspect and see that the div will change to activated when you click on it 

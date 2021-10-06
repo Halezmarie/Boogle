@@ -66,7 +66,7 @@ class MovieAdapter{
             }
         }
         fetch(`${port}/movies/${id}`, configObj) // config is telling the user to delete
-            .then(r => r.json()) // handling the response by converting it
+            .then(r => r.json()) //handling the response by converting it
             .then(json => alert(json.message)) // succesfully deleted movie
       }
 }
