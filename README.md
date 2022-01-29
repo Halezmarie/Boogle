@@ -2,9 +2,8 @@
 
 # Welcome to 👻Boogle👻
 
-Boogle is for everyone who loves scary movies. Users can view, create, and delete movies. When the user creates the movie, they can add the title, year, rating, length, description, and where to watch it. 
-If you would like to check out my app, please read below
-Installation:
+Boogle is for everyone who loves scary movies. Users can view, create, and delete movies, as well as add movies to the current list.  If you would like to check out my app, please read below:
+
 
 # Installation and Setup 💻
 
