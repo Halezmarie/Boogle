@@ -1,6 +1,6 @@
 [Demo of Boogle](https://www.youtube.com/watch?v=enG8KTtPc50w-Ni9Ug/view?usp=sharing)
 
-# Welcome to 👻Boogle👻
+# Welcome to 👻Boogle👻!
 
 Boogle is for everyone who loves scary movies. Users can view, create, and delete movies, as well as add movies to the current list.  If you would like to check out my app, please read below:
 
